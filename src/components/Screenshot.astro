@@ -1,0 +1,18 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<div class="mt-6 mb-8">
+  <div class="border-4 border-black bg-white p-2 shadow-brutal transform hover:rotate-1 transition-transform">
+    <img src={src} alt={alt} class="w-full h-auto" />
+  </div>
+  {caption && (
+    <p class="text-center mt-2 text-sm font-bold">{caption}</p>
+  )}
+</div>

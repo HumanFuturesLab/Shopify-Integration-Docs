@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Screenshot from '../components/Screenshot.astro';
+import IntroSection from '../components/IntroSection.astro';
+---
+
+<Layout title="Shopify Integration Guide - Gleo">
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold mb-4 transform -rotate-2">Gleo's Shopify Integration Guide</h1>
+      <p class="text-2xl transform rotate-1">Technical documentation for Gleo Reward Partners</p>
+    </div>
+
+    <IntroSection />
+
+    <!-- Integration Steps -->
+    <div class="space-y-12">
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:-rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">1. Access Shopify Admin</h2>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>Navigate to your Shopify admin dashboard at <code class="bg-black text-white px-2 py-1 rounded">yourstore.myshopify.com/admin</code></li>
+          <li>Click <strong>Apps</strong> in the left-hand sidebar</li>
+        </ul>
+        <Screenshot 
+          src="/images/step1-admin-dashboard.png" 
+          alt="Shopify Admin Dashboard"
+          caption="Shopify Admin Dashboard - Apps section highlighted" 
+        />
+      </section>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">2. Access App Development</h2>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>In the Apps section, scroll to find <strong>App and sales channel settings</strong></li>
+          <li>Click <strong>Develop apps</strong> in the top-right corner</li>
+        </ul>
+        <Screenshot 
+          src="/images/step2-app-development.png" 
+          alt="App Development Section"
+          caption="App and sales channel settings page" 
+        />
+      </section>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:-rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">3. Create New App</h2>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>Click <strong>Create an app</strong></li>
+          <li>Enter app name (e.g., "GleoApp")</li>
+          <li>Add your developer email address</li>
+          <li>Click <strong>Create app</strong> to continue</li>
+        </ul>
+        <Screenshot 
+          src="/images/step3-create-app.png" 
+          alt="Create New App Form"
+          caption="Create a new app form" 
+        />
+      </section>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">4. Set API Permissions</h2>
+        <div class="mb-6">
+          <p class="text-lg mb-4">These permissions allow Gleo to:</p>
+          <ul class="list-disc pl-6 space-y-2 text-lg">
+            <li>Create and manage discount codes automatically</li>
+            <li>Set specific discount rules based on your preferences</li>
+            <li>Track and validate discount usage</li>
+          </ul>
+        </div>
+        <div class="bg-yellow-50 p-4 rounded-lg border-2 border-black mb-6">
+          <p class="font-bold">🔒 Security Note: These permissions are strictly limited to discount management. Gleo cannot access orders, inventory, or customer data.</p>
+        </div>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>Go to the <strong>Configuration</strong> tab</li>
+          <li>Under Admin API Integration, click <strong>Edit</strong></li>
+          <li>Enable the following scopes:
+            <ul class="list-circle pl-6 mt-3 space-y-2">
+              <li><code class="bg-black text-white px-2 py-1 rounded">write_price_rules</code> - Create/manage price rules</li>
+              <li><code class="bg-black text-white px-2 py-1 rounded">read_price_rules</code> - Read price rules</li>
+              <li><code class="bg-black text-white px-2 py-1 rounded">read_discounts</code> - Read discount information</li>
+              <li><code class="bg-black text-white px-2 py-1 rounded">write_discounts</code> - Create/manage discounts</li>
+            </ul>
+          </li>
+          <li>Click <strong>Save</strong> to apply changes</li>
+        </ul>
+        <Screenshot 
+          src="/images/step4-api-permissions.png" 
+          alt="API Permissions Configuration"
+          caption="API scopes configuration page" 
+        />
+      </section>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:-rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">5. Generate API Credentials</h2>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>Navigate to the <strong>API Credentials</strong> tab</li>
+          <li>Click <strong>Install app</strong> to generate the Admin API access token</li>
+          <li class="text-red-600 font-bold">Important: Save the token immediately - it will only be shown once!</li>
+        </ul>
+        <Screenshot 
+          src="/images/step5-api-credentials.png" 
+          alt="API Credentials Generation"
+          caption="API credentials page with Install app button" 
+        />
+      </section>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">6. Share Access Token</h2>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>Securely share the Admin API Access token with Gleo</li>
+          <li>Use secure communication channels to prevent unauthorized access</li>
+        </ul>
+        <div class="bg-green-50 p-4 rounded-lg border-2 border-black mt-4">
+          <h3 class="font-bold text-xl mb-2">What Happens Next?</h3>
+          <p class="text-lg">Once integrated, Gleo will:</p>
+          <ul class="list-disc pl-6 mt-2 space-y-2">
+            <li>Automatically generate unique discount codes</li>
+            <li>Manage code distribution to eligible users</li>
+            <li>Handle code validation and usage tracking</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="bg-black text-gleo-lime p-8 rounded-lg border-4 border-gleo-lime shadow-brutal-lg transform -rotate-1">
+        <h3 class="text-2xl font-bold mb-4">Need Support? 🤝</h3>
+        <p class="text-xl">
+          Our technical team is here to help! If you encounter any issues during integration or have questions about security and permissions, don't hesitate to reach out.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>

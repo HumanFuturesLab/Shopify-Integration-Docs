@@ -1,0 +1,53 @@
+---
+import CodeExample from './CodeExample.astro';
+---
+<section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:-rotate-1 transition-transform mb-16">
+  <h2 class="text-3xl font-bold mb-6">Understanding Gleo's Shopify Integration</h2>
+  
+  <div class="space-y-6">
+    <div class="bg-lime-100 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">What We're Setting Up</h3>
+      <p class="text-lg">This integration enables Gleo to automatically create and manage discount codes on your Shopify store through Shopify's secure Admin API. We'll only request essential permissions needed for discount code management.</p>
+    </div>
+
+    <div class="bg-lime-100 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">Why We Create Discount Codes from Our Platform</h3>
+      <div class="space-y-4">
+        <p class="text-lg">When you partner with Gleo, you agree to offer discounts (up to an agreed percentage) as rewards to socially conscious customers. Our platform manages these discounts dynamically based on user engagement:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold mb-2">🎯 Fair Distribution</h4>
+            <p>Users receive varying discount amounts (5%, 10%, up to the maximum agreed %) based on their participation and impact level.</p>
+          </div>
+          
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold mb-2">✅ Adherence to Terms</h4>
+            <p>We strictly enforce your maximum discount limit. If you set 30% as maximum, no user will ever receive more.</p>
+          </div>
+          
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold mb-2">👤 Personalized Rewards</h4>
+            <p>Tailored discounts incentivize greater engagement, driving more meaningful traffic to your store.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-lime-100 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">How It Works</h3>
+      <ul class="list-disc pl-6 space-y-2 text-lg">
+        <li>You'll create a secure API access token in your Shopify admin</li>
+        <li>This token allows Gleo to generate discount codes automatically</li>
+        <li>You maintain full control over discount parameters and permissions</li>
+      </ul>
+    </div>
+
+    <div class="bg-yellow-50 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">Security &amp; Privacy</h3>
+      <p class="text-lg">The integration is limited to discount code management only. Gleo cannot access your orders, inventory, customer data, or any other store information.</p>
+    </div>
+
+    <CodeExample />
+  </div>
+</section>
