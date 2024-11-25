@@ -6,6 +6,14 @@ import IntroSection from '../components/IntroSection.astro';
 
 <Layout title="Shopify Integration Guide - Gleo">
   <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="absolute top-8 left-8">
+      <img 
+        src="/images/gleo-logo.jpeg" 
+        alt="Gleo Logo" 
+        class="w-36 h-20 rounded-xl"
+      />
+    </div>
+
     <div class="text-center mb-16">
       <h1 class="text-5xl font-bold mb-4 transform -rotate-2">Gleo's Shopify Integration Guide</h1>
       <p class="text-2xl transform rotate-1">Technical documentation for Gleo Reward Partners</p>
@@ -64,10 +72,11 @@ import IntroSection from '../components/IntroSection.astro';
             <li>Create and manage discount codes automatically</li>
             <li>Set specific discount rules based on your preferences</li>
             <li>Track and validate discount usage</li>
+            <li>Receive notifications when discount codes are redeemed</li>
           </ul>
         </div>
         <div class="bg-yellow-50 p-4 rounded-lg border-2 border-black mb-6">
-          <p class="font-bold">🔒 Security Note: These permissions are strictly limited to discount management. Gleo cannot access orders, inventory, or customer data.</p>
+          <p class="font-bold">🔒 Security Note: These permissions are strictly limited to discount management and associated order data. Gleo only receives information about transactions where our discount codes are used.</p>
         </div>
         <ul class="list-disc pl-6 space-y-3 text-lg">
           <li>Go to the <strong>Configuration</strong> tab</li>
