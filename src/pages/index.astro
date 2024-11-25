@@ -106,10 +106,55 @@ import IntroSection from '../components/IntroSection.astro';
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
         <h2 class="text-3xl font-bold mb-6">6. Share Access Token</h2>
         <ul class="list-disc pl-6 space-y-3 text-lg">
-          <li>Securely share the Admin API Access token with Gleo</li>
-          <li>Use secure communication channels to prevent unauthorized access</li>
+          <li>Share your Admin API Access token with Gleo using either of these secure methods:</li>
         </ul>
-        <div class="bg-green-50 p-4 rounded-lg border-2 border-black mt-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div class="bg-blue-50 p-6 rounded-lg border-2 border-black">
+            <h3 class="font-bold text-xl mb-3">Option 1: Secure Document</h3>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>Create a new Google Document</li>
+              <li>Add your token, store URL, and contact details</li>
+              <li>Share the document with:
+                <code class="block bg-black text-white px-3 py-2 rounded mt-2 text-sm">
+                  tech@gleo.club
+                </code>
+              </li>
+              <li>Set sharing permissions to "Restricted"</li>
+            </ol>
+            <div class="mt-4 text-sm bg-yellow-100 p-3 rounded">
+              ⚠️ Ensure document access is restricted before adding sensitive information
+            </div>
+          </div>
+
+          <div class="bg-purple-50 p-6 rounded-lg border-2 border-black">
+            <h3 class="font-bold text-xl mb-3">Option 2: Email</h3>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>Email your token to:
+                <code class="block bg-black text-white px-3 py-2 rounded mt-2 text-sm">
+                  tech@gleo.club
+                </code>
+              </li>
+              <li>Include your store URL and contact details</li>
+            </ol>
+          </div>
+
+          <div class="bg-green-50 p-6 rounded-lg border-2 border-black">
+            <h3 class="font-bold text-xl mb-3">Option 3: Custom Method</h3>
+            <p class="mb-4">Have another secure sharing method in mind? We're open to alternatives!</p>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>Email us at:
+                <code class="block bg-black text-white px-3 py-2 rounded mt-2 text-sm">
+                  tech@gleo.club
+                </code>
+              </li>
+              <li>Describe your preferred secure sharing method</li>
+              <li>We'll work with you to arrange a secure transfer</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg border-2 border-black mt-8">
           <h3 class="font-bold text-xl mb-2">What Happens Next?</h3>
           <p class="text-lg">Once integrated, Gleo will:</p>
           <ul class="list-disc pl-6 mt-2 space-y-2">
