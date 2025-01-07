@@ -174,6 +174,184 @@ import IntroSection from '../components/IntroSection.astro';
         </div>
       </section>
 
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">7. Configure Order Tracking</h2>
+        
+        <div class="mb-8">
+          <p class="text-xl mb-4">The next steps depend on your Shopify subscription tier. Select your tier to see the appropriate integration steps:</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <button 
+              id="basicTier"
+              class="p-6 border-4 border-black rounded-lg bg-yellow-50 hover:bg-yellow-100 transition-colors text-left"
+            >
+              <h3 class="text-2xl font-bold mb-2">Shopify Basic</h3>
+              <p>Standard integration with full order history access</p>
+            </button>
+            
+            <button 
+              id="advancedTier"
+              class="p-6 border-4 border-black rounded-lg bg-green-50 hover:bg-green-100 transition-colors text-left"
+            >
+              <h3 class="text-2xl font-bold mb-2">Shopify Advanced</h3>
+              <p>Optimized integration using Shopify Flow</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Basic Tier Content -->
+        <div id="basicTierContent" class="hidden tier-content">
+          <div class="bg-yellow-50 p-6 rounded-lg border-2 border-black mb-6">
+            <h3 class="text-2xl font-bold mb-4">Basic Tier Integration</h3>
+            <p class="mb-4">With Shopify Basic, we'll need to:</p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li>Enable read access to all orders to track discount code usage</li>
+              <li>Add additional API permissions for order tracking</li>
+            </ul>
+            <div class="mt-4 bg-yellow-100 p-4 rounded">
+              ⚠️ Note: This method requires broader access to your order data since filtering capabilities are limited in Basic tier.
+            </div>
+          </div>
+
+          <h4 class="text-xl font-bold mb-4">Additional API Permissions Required:</h4>
+          <ul class="list-disc pl-6 space-y-3 text-lg mb-6">
+            <li>Return to the API permissions section</li>
+            <li>Enable these additional scopes:
+              <ul class="list-circle pl-6 mt-3 space-y-2">
+                <li><code class="bg-black text-white px-2 py-1 rounded">read_orders</code> - Access order information</li>
+                <li><code class="bg-black text-white px-2 py-1 rounded">read_all_orders</code> - Read all order data</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Advanced Tier Content -->
+        <div id="advancedTierContent" class="hidden tier-content">
+          <div class="bg-green-50 p-6 rounded-lg border-2 border-black mb-6">
+            <h3 class="text-2xl font-bold mb-4">Advanced Tier Integration with Shopify Flow</h3>
+            <p class="mb-4">Using Shopify Flow, we can set up targeted notifications that only send data when Gleo-generated discount codes are used.</p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded border-2 border-black">
+              <h4 class="text-xl font-bold mb-3">1. Access Shopify Flow</h4>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>From your Shopify admin dashboard, navigate to <strong>Apps > Flow</strong></li>
+                <li>Click <strong>Create Workflow</strong></li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded border-2 border-black">
+              <h4 class="text-xl font-bold mb-3">2. Configure Trigger</h4>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Click <strong>Select a trigger</strong></li>
+                <li>Choose <strong>Shopify</strong></li>
+                <li>Select <strong>Order Created</strong> as the trigger</li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded border-2 border-black">
+              <h4 class="text-xl font-bold mb-3">3. Set Up Conditions</h4>
+              <ul class="list-disc pl-6 space-y-4">
+                <li class="space-y-2">
+                  <p><strong>First Condition (Payment Status):</strong></p>
+                  <ol class="list-decimal pl-6">
+                    <li>Click the <strong>+</strong> button</li>
+                    <li>Select <strong>Condition</strong></li>
+                    <li>Click <strong>Add variable</strong> in the search field</li>
+                    <li>Search and select <code class="bg-black text-white px-2 py-1 rounded">fullyPaid</code></li>
+                    <li>Set the condition to <strong>is equal to True</strong></li>
+                  </ol>
+                </li>
+
+                <li class="space-y-2">
+                  <p><strong>Second Condition (Discount Code Exists):</strong></p>
+                  <ol class="list-decimal pl-6">
+                    <li>Click <strong>Then</strong> and select <strong>Condition</strong></li>
+                    <li>Click <strong>Add variable</strong> and select <code class="bg-black text-white px-2 py-1 rounded">discountCode</code></li>
+                    <li>Choose <strong>Not Empty and exists</strong></li>
+                    <li>Click <strong>Add criteria</strong> and select <strong>AND</strong></li>
+                  </ol>
+                </li>
+
+                <li class="space-y-2">
+                  <p><strong>Third Condition (Gleo Code Prefix):</strong></p>
+                  <ol class="list-decimal pl-6">
+                    <li>Select <code class="bg-black text-white px-2 py-1 rounded">discountCode</code> again</li>
+                    <li>Choose <strong>Starts with</strong></li>
+                    <li>Enter <strong>GLEO</strong> in the value input field</li>
+                  </ol>
+                </li>
+              </ul>
+              <div class="mt-4 bg-blue-50 p-4 rounded border border-black">
+                <p class="text-sm">💡 <strong>Note:</strong> These conditions ensure the workflow only triggers for completed orders that use Gleo-generated discount codes.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded border-2 border-black">
+              <h4 class="text-xl font-bold mb-3">4. Configure HTTP Action</h4>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Add an action and select <strong>Flow > Send HTTP Request</strong></li>
+                <li>Set HTTP Method to <strong>POST</strong></li>
+                <li>Enter the Gleo endpoint URL (provided separately)</li>
+                <li>Add header:
+                  <code class="block bg-gray-100 p-2 mt-2 rounded">
+                    Content-Type: application/json
+                  </code>
+                </li>
+                <li>Add the following JSON body:
+                  <pre class="bg-gray-100 p-3 mt-2 rounded overflow-x-auto"><code>{"{"} 
+  "created_at": "{"{"} order.createdAt {"}"}",
+  "discountcode": "{"{"} order.discountCode {"}"}",
+  "discountedamount": "{"{"} order.totalDiscountsSet.shopMoney.amount {"}"}",
+  "subtotal": "{"{"} order.subtotalPriceSet.shopMoney.amount {"}"}",
+  "total": "{"{"} order.totalPriceSet.shopMoney.amount {"}"}"
+{"}"}</code></pre>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded border-2 border-black">
+              <h4 class="text-xl font-bold mb-3">5. Activate the Workflow</h4>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Review all settings for accuracy</li>
+                <li>Click <strong>Turn On Workflow</strong> to activate</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <script is:inline>
+          document.addEventListener('DOMContentLoaded', () => {
+            const showTierContent = (tier) => {
+              // Hide all tier content
+              document.querySelectorAll('.tier-content').forEach((el) => {
+                el.classList.add('hidden');
+              });
+              
+              // Show selected tier content
+              const selectedContent = document.getElementById(tier + 'TierContent');
+              if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+              }
+              
+              // Update button styles
+              document.querySelectorAll('#basicTier, #advancedTier').forEach((button) => {
+                button.classList.remove('ring-4', 'ring-black');
+              });
+              const selectedButton = document.getElementById(tier + 'Tier');
+              if (selectedButton) {
+                selectedButton.classList.add('ring-4', 'ring-black');
+              }
+            };
+
+            // Add click event listeners to buttons
+            document.getElementById('basicTier')?.addEventListener('click', () => showTierContent('basic'));
+            document.getElementById('advancedTier')?.addEventListener('click', () => showTierContent('advanced'));
+          });
+        </script>
+      </section>
+
       <div class="bg-black text-gleo-lime p-8 rounded-lg border-4 border-gleo-lime shadow-brutal-lg transform -rotate-1">
         <h3 class="text-2xl font-bold mb-4">Need Support? 🤝</h3>
         <p class="text-xl">

@@ -45,7 +45,23 @@ import CodeExample from './CodeExample.astro';
 
     <div class="bg-yellow-50 p-6 rounded-lg border-2 border-black">
       <h3 class="text-xl font-bold mb-3">Security &amp; Privacy</h3>
-      <p class="text-lg">The integration's permissions are carefully scoped to handle discount code management and track redemptions. Gleo only receives information about transactions where our discount codes are used. We cannot access your general orders, inventory, customer data, or any other store information.</p>
+      <div class="space-y-4">
+        <p class="text-lg">The integration's permissions are carefully scoped based on your Shopify tier:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold text-lg mb-2">🔒 Basic Tier Access</h4>
+            <p>Due to platform limitations, we require broader order data access to track discount usage. However, we only process and store information related to orders using Gleo discount codes.</p>
+          </div>
+          
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold text-lg mb-2">🛡️ Advanced Tier Access</h4>
+            <p>Using Shopify Flow, we receive data only for transactions where Gleo discount codes are used, minimizing data access to essential information.</p>
+          </div>
+        </div>
+
+        <p class="text-lg">In both cases, we cannot access your inventory, customer personal data, or any other store information outside of discount-related transactions.</p>
+      </div>
     </div>
 
     <CodeExample />
