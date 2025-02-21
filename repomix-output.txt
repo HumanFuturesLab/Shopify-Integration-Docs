@@ -1,3 +1,371 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+.bolt/
+  config.json
+.codesandbox/
+  Dockerfile
+public/
+  favicon.svg
+src/
+  components/
+    Card.astro
+    CodeExample.astro
+    IntroSection.astro
+    Screenshot.astro
+  layouts/
+    Layout.astro
+  pages/
+    index.astro
+  env.d.ts
+.gitignore
+astro.config.mjs
+package.json
+README.md
+tailwind.config.mjs
+tsconfig.json
+
+================================================================
+Files
+================================================================
+
+================
+File: .bolt/config.json
+================
+{
+  "template": "astro"
+}
+
+================
+File: .codesandbox/Dockerfile
+================
+FROM node:18-bullseye
+
+================
+File: public/favicon.svg
+================
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+    <path d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z" />
+    <style>
+        path { fill: #000; }
+        @media (prefers-color-scheme: dark) {
+            path { fill: #FFF; }
+        }
+    </style>
+</svg>
+
+================
+File: src/components/Card.astro
+================
+---
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<li class="link-card">
+	<a href={href}>
+		<h2>
+			{title}
+			<span>&rarr;</span>
+		</h2>
+		<p>
+			{body}
+		</p>
+	</a>
+</li>
+<style>
+	.link-card {
+		list-style: none;
+		display: flex;
+		padding: 1px;
+		background-color: #23262d;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 7px;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	}
+	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		padding: calc(1.5rem - 1px);
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+		opacity: 0.8;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+	.link-card:is(:hover, :focus-within) {
+		background-position: 0;
+		background-image: var(--accent-gradient);
+	}
+	.link-card:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent-light));
+	}
+</style>
+
+================
+File: src/components/CodeExample.astro
+================
+---
+---
+<div class="bg-gray-50 p-6 rounded-lg border-2 border-black">
+  <h3 class="text-xl font-bold mb-3">How Gleo Uses the API</h3>
+  <p class="text-lg mb-4">Here's an example of how Gleo interacts with Shopify's API to create discount codes:</p>
+  <details class="bg-white rounded-lg border-2 border-black">
+    <summary class="cursor-pointer p-4 font-bold text-lg">View Code Example</summary>
+    <div class="p-4 bg-gray-900 rounded-b-lg overflow-x-auto">
+      <pre class="text-green-400 text-sm"><code>{`# Example script for creating a price rule and discount code in Shopify
+import requests
+import json
+
+shop = "example-store.myshopify.com"
+access_token = "your-access-token"
+
+headers = {
+    "Content-Type": "application/json",
+    "X-Shopify-Access-Token": access_token
+}
+
+# Step 1: Create a Price Rule
+price_rule_data = {
+    "price_rule": {
+        "title": "GLEO Reward",
+        "target_type": "line_item",
+        "target_selection": "all",
+        "allocation_method": "across",
+        "value_type": "percentage",
+        "value": "-30.0",
+        "customer_selection": "all",
+        "starts_at": "2024-11-11T00:00:00Z"
+    }
+}
+
+response = requests.post(
+    f"https://{shop}/admin/api/2023-10/price_rules.json",
+    headers=headers,
+    data=json.dumps(price_rule_data)
+)
+
+if response.status_code == 201:
+    print("Price rule created successfully!")
+    price_rule_id = response.json()["price_rule"]["id"]
+    # Step 2: Generate Discount Code
+    discount_code_data = {
+        "discount_code": {
+            "code": "GLEO123456789"
+        }
+    }
+    response = requests.post(
+        f"https://{shop}/admin/api/2023-10/price_rules/{price_rule_id}/discount_codes.json",
+        headers=headers,
+        data=json.dumps(discount_code_data)
+    )
+    if response.status_code == 201:
+        print("Discount code created successfully!")
+else:
+    print("Error creating price rule:", response.json())`}</code></pre>
+    </div>
+  </details>
+  <div class="mt-4 text-sm text-gray-600">
+    <p>This example demonstrates:</p>
+    <ul class="list-disc pl-6 mt-2 space-y-1">
+      <li>Creating a price rule with specific discount parameters</li>
+      <li>Generating a unique discount code linked to the price rule</li>
+      <li>Secure API authentication using your access token</li>
+    </ul>
+  </div>
+</div>
+
+================
+File: src/components/IntroSection.astro
+================
+---
+import CodeExample from './CodeExample.astro';
+---
+<section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:-rotate-1 transition-transform mb-16">
+  <h2 class="text-3xl font-bold mb-6">Understanding Gleo's Shopify Integration</h2>
+  
+  <div class="space-y-6">
+    <div class="bg-lime-100 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">What We're Setting Up</h3>
+      <p class="text-lg">This integration enables Gleo to automatically create and manage discount codes on your Shopify store through Shopify's secure Admin API. We'll only request essential permissions needed for discount code management.</p>
+    </div>
+
+    <div class="bg-lime-100 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">Why We Create Discount Codes from Our Platform</h3>
+      <div class="space-y-4">
+        <p class="text-lg">When you partner with Gleo, you agree to offer discounts (up to an agreed percentage) as rewards to socially conscious customers. Our platform manages these discounts dynamically based on user engagement:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold mb-2">🎯 Fair Distribution</h4>
+            <p>Users receive varying discount amounts (5%, 10%, up to the maximum agreed %) based on their participation and impact level.</p>
+          </div>
+          
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold mb-2">✅ Adherence to Terms</h4>
+            <p>We strictly enforce your maximum discount limit. If you set 30% as maximum, no user will ever receive more.</p>
+          </div>
+          
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold mb-2">👤 Personalized Rewards</h4>
+            <p>Tailored discounts incentivize greater engagement, driving more meaningful traffic to your store.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-lime-100 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">How It Works</h3>
+      <ul class="list-disc pl-6 space-y-2 text-lg">
+        <li>You'll create a secure API access token in your Shopify admin</li>
+        <li>This token allows Gleo to generate discount codes automatically</li>
+        <li>You maintain full control over discount parameters and permissions</li>
+      </ul>
+    </div>
+
+    <div class="bg-yellow-50 p-6 rounded-lg border-2 border-black">
+      <h3 class="text-xl font-bold mb-3">Security &amp; Privacy</h3>
+      <div class="space-y-4">
+        <p class="text-lg">The integration's permissions are carefully scoped based on your Shopify tier:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold text-lg mb-2">🔒 Basic Tier Access</h4>
+            <p>Due to platform limitations, we require broader order data access to track discount usage. However, we only process and store information related to orders using Gleo discount codes.</p>
+          </div>
+          
+          <div class="bg-white p-4 rounded border-2 border-black">
+            <h4 class="font-bold text-lg mb-2">🛡️ Advanced Tier Access</h4>
+            <p>Using Shopify Flow, we receive data only for transactions where Gleo discount codes are used, minimizing data access to essential information.</p>
+          </div>
+        </div>
+
+        <p class="text-lg">In both cases, we cannot access your inventory, customer personal data, or any other store information outside of discount-related transactions.</p>
+      </div>
+    </div>
+
+    <CodeExample />
+  </div>
+</section>
+
+================
+File: src/components/Screenshot.astro
+================
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<div class="mt-6 mb-8">
+  <div class="border-4 border-black bg-white p-2 shadow-brutal transform hover:rotate-1 transition-transform">
+    <img src={src} alt={alt} class="w-full h-auto" />
+  </div>
+  {caption && (
+    <p class="text-center mt-2 text-sm font-bold">{caption}</p>
+  )}
+</div>
+
+================
+File: src/layouts/Layout.astro
+================
+---
+import Analytics from '@vercel/analytics/astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Shopify Integration Guide for Gleo Reward Partners" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/images/gleo-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-lime-300 min-h-screen font-space-grotesk">
+    <slot />
+    <Analytics />
+  </body>
+</html>
+
+================
+File: src/pages/index.astro
+================
 ---
 import Layout from '../layouts/Layout.astro';
 import Screenshot from '../components/Screenshot.astro';
@@ -209,7 +577,7 @@ import IntroSection from '../components/IntroSection.astro';
               <li>Add additional API permissions for order tracking</li>
             </ul>
             <div class="mt-4 bg-yellow-100 p-4 rounded">
-              ⚠️ Note: Due to limited filtering capabilities on the Basic tier, additional permissions are required for discount usage tracking.
+              ⚠️ Note: This method requires broader access to your order data since filtering capabilities are limited in Basic tier.
             </div>
           </div>
 
@@ -361,3 +729,165 @@ import IntroSection from '../components/IntroSection.astro';
     </div>
   </main>
 </Layout>
+
+================
+File: src/env.d.ts
+================
+/// <reference path="../.astro/types.d.ts" />
+
+================
+File: .gitignore
+================
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+================
+File: astro.config.mjs
+================
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+
+export default defineConfig({
+  integrations: [tailwind()]
+});
+
+================
+File: package.json
+================
+{
+  "name": "shopify-integration-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.0",
+    "@vercel/analytics": "^1.4.1",
+    "astro": "^4.15.3",
+    "tailwindcss": "^3.4.1"
+  }
+}
+
+================
+File: README.md
+================
+# Astro Starter Kit: Basics
+
+```sh
+npm create astro@latest -- --template basics
+```
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+================
+File: tailwind.config.mjs
+================
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      colors: {
+        'gleo-blue': '#4287f5',
+        'gleo-lime': '#c8ff00',
+        'gleo-coral': '#ff7f7f'
+      },
+      fontFamily: {
+        'space-grotesk': ['Space Grotesk', 'sans-serif'],
+      },
+      boxShadow: {
+        'brutal': '4px 4px 0 0 rgba(0,0,0,1)',
+        'brutal-lg': '8px 8px 0 0 rgba(0,0,0,1)',
+      }
+    },
+  },
+  plugins: [],
+}
+
+================
+File: tsconfig.json
+================
+{
+  "extends": "astro/tsconfigs/base"
+}
+
+
+
+================================================================
+End of Codebase
+================================================================
