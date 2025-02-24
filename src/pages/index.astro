@@ -194,7 +194,7 @@ import IntroSection from '../components/IntroSection.astro';
               class="p-6 border-4 border-black rounded-lg bg-green-50 hover:bg-green-100 transition-colors text-left"
             >
               <h3 class="text-2xl font-bold mb-2">Shopify Advanced</h3>
-              <p>Optimized integration using Shopify Flow</p>
+              <p>Reduces data exposure by filtering at the source</p>
             </button>
           </div>
         </div>
@@ -209,7 +209,7 @@ import IntroSection from '../components/IntroSection.astro';
               <li>Add additional API permissions for order tracking</li>
             </ul>
             <div class="mt-4 bg-yellow-100 p-4 rounded">
-              ⚠️ Note: Due to limited filtering capabilities on the Basic tier, additional permissions are required for discount usage tracking.
+              ⚠️ Note: This ensures we can track discount performance accurately, but we only use data tied to Gleo codes.
             </div>
           </div>
 
@@ -229,7 +229,8 @@ import IntroSection from '../components/IntroSection.astro';
         <div id="advancedTierContent" class="hidden tier-content">
           <div class="bg-green-50 p-6 rounded-lg border-2 border-black mb-6">
             <h3 class="text-2xl font-bold mb-4">Advanced Tier Integration with Shopify Flow</h3>
-            <p class="mb-4">Using Shopify Flow, we can set up targeted notifications that only send data when Gleo-generated discount codes are used.</p>
+            <p class="mb-4">Using Shopify Flow, we can set up targeted notifications that only send data when Gleo-generated discount codes are used. <br>
+              <br>This sends us basic order details (like total cost and discount used) when a Gleo code is redeemed.</p>
           </div>
 
           <div class="space-y-6">
