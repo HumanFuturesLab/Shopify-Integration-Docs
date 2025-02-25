@@ -113,69 +113,7 @@ import IntroSection from '../components/IntroSection.astro';
       </section>
 
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">6. Share Access Token</h2>
-        <ul class="list-disc pl-6 space-y-3 text-lg">
-          <li>Share your Admin API Access token with Gleo using either of these secure methods:</li>
-        </ul>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-          <div class="bg-blue-50 p-6 rounded-lg border-2 border-black">
-            <h3 class="font-bold text-xl mb-3">Option 1: Secure Document</h3>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Create a new Google Document</li>
-              <li>Add your token, store URL, and contact details</li>
-              <li>Share the document with:
-                <code class="block bg-black text-white px-3 py-2 rounded mt-2 text-sm">
-                  tech@gleo.club
-                </code>
-              </li>
-              <li>Set sharing permissions to "Restricted"</li>
-            </ol>
-            <div class="mt-4 text-sm bg-yellow-100 p-3 rounded">
-              ⚠️ Ensure document access is restricted before adding sensitive information
-            </div>
-          </div>
-
-          <div class="bg-purple-50 p-6 rounded-lg border-2 border-black">
-            <h3 class="font-bold text-xl mb-3">Option 2: Email</h3>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Email your token to:
-                <code class="block bg-black text-white px-3 py-2 rounded mt-2 text-sm">
-                  tech@gleo.club
-                </code>
-              </li>
-              <li>Include your store URL and contact details</li>
-            </ol>
-          </div>
-
-          <div class="bg-green-50 p-6 rounded-lg border-2 border-black">
-            <h3 class="font-bold text-xl mb-3">Option 3: Custom Method</h3>
-            <p class="mb-4">Have another secure sharing method in mind? We're open to alternatives!</p>
-            <ol class="list-decimal pl-6 space-y-2">
-              <li>Email us at:
-                <code class="block bg-black text-white px-3 py-2 rounded mt-2 text-sm">
-                  tech@gleo.club
-                </code>
-              </li>
-              <li>Describe your preferred secure sharing method</li>
-              <li>We'll work with you to arrange a secure transfer</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="bg-green-50 p-4 rounded-lg border-2 border-black mt-8">
-          <h3 class="font-bold text-xl mb-2">What Happens Next?</h3>
-          <p class="text-lg">Once integrated, Gleo will:</p>
-          <ul class="list-disc pl-6 mt-2 space-y-2">
-            <li>Automatically generate unique discount codes</li>
-            <li>Manage code distribution to eligible users</li>
-            <li>Handle code validation and usage tracking</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">7. Configure Order Tracking</h2>
+        <h2 class="text-3xl font-bold mb-6">6. Configure Order Tracking</h2>
         
         <div class="mb-8">
           <p class="text-xl mb-4">The next steps depend on your Shopify subscription tier. Select your tier to see the appropriate integration steps:</p>
@@ -235,7 +173,7 @@ import IntroSection from '../components/IntroSection.astro';
 
           <div class="space-y-6">
             <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">1. Access Shopify Flow</h4>
+              <h4 class="text-xl font-bold mb-3">Step A: Access Shopify Flow</h4>
               <ul class="list-disc pl-6 space-y-2">
                 <li>From your Shopify admin dashboard, navigate to <strong>Apps > Flow</strong></li>
                 <li>Click <strong>Create Workflow</strong></li>
@@ -243,7 +181,7 @@ import IntroSection from '../components/IntroSection.astro';
             </div>
 
             <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">2. Configure Trigger</h4>
+              <h4 class="text-xl font-bold mb-3">Step B: Configure Trigger</h4>
               <ul class="list-disc pl-6 space-y-2">
                 <li>Click <strong>Select a trigger</strong></li>
                 <li>Choose <strong>Shopify</strong></li>
@@ -252,7 +190,7 @@ import IntroSection from '../components/IntroSection.astro';
             </div>
 
             <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">3. Set Up Conditions</h4>
+              <h4 class="text-xl font-bold mb-3">Step C: Set Up Conditions</h4>
               <ul class="list-disc pl-6 space-y-4">
                 <li class="space-y-2">
                   <p><strong>First Condition (Payment Status):</strong></p>
@@ -290,7 +228,7 @@ import IntroSection from '../components/IntroSection.astro';
             </div>
 
             <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">4. Configure HTTP Action</h4>
+              <h4 class="text-xl font-bold mb-3">Step D: Configure HTTP Action</h4>
               <ul class="list-disc pl-6 space-y-2">
                 <li>Add an action and select <strong>Flow > Send HTTP Request</strong></li>
                 <li>Set HTTP Method to <strong>POST</strong></li>
@@ -313,7 +251,7 @@ import IntroSection from '../components/IntroSection.astro';
             </div>
 
             <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">5. Activate the Workflow</h4>
+              <h4 class="text-xl font-bold mb-3">Step E: Activate the Workflow</h4>
               <ul class="list-disc pl-6 space-y-2">
                 <li>Review all settings for accuracy</li>
                 <li>Click <strong>Turn On Workflow</strong> to activate</li>
@@ -353,15 +291,8 @@ import IntroSection from '../components/IntroSection.astro';
         </script>
       </section>
 
-      <div class="bg-black text-gleo-lime p-8 rounded-lg border-4 border-gleo-lime shadow-brutal-lg transform -rotate-1">
-        <h3 class="text-2xl font-bold mb-4">Need Support? 🤝</h3>
-        <p class="text-xl">
-          Our technical team is here to help! If you encounter any issues during integration or have questions about security and permissions, don't hesitate to reach out.
-        </p>
-      </div>
-
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">8. Submit Integration Details 📝</h2>
+        <h2 class="text-3xl font-bold mb-6">7. Submit Integration Details 📝</h2>
         <p class="text-xl mb-6">To make the integration process smoother, please submit your details through our secure form:</p>
 
         <div class="space-y-6">
@@ -392,11 +323,18 @@ import IntroSection from '../components/IntroSection.astro';
 
           <div class="bg-gray-50 p-4 rounded-lg border-2 border-black mt-4">
             <p class="text-sm">
-              💡 <strong>Note:</strong> If you prefer to share these details through another secure method, you can still use the options described in Step 6.
+              💡 <strong>Note:</strong> If you prefer not to use the form, please contact us directly at tech@gleo.club to arrange an alternative method for sharing your integration details.
             </p>
           </div>
         </div>
       </section>
+
+      <div class="bg-black text-gleo-lime p-8 rounded-lg border-4 border-gleo-lime shadow-brutal-lg transform -rotate-1">
+        <h3 class="text-2xl font-bold mb-4">Need Support? 🤝</h3>
+        <p class="text-xl">
+          Our technical team is here to help! If you encounter any issues during integration or have questions about security and permissions, don't hesitate to reach out.
+        </p>
+      </div>
     </div>
   </main>
 </Layout>
