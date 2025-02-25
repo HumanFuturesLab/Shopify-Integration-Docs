@@ -359,6 +359,44 @@ import IntroSection from '../components/IntroSection.astro';
           Our technical team is here to help! If you encounter any issues during integration or have questions about security and permissions, don't hesitate to reach out.
         </p>
       </div>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">8. Submit Integration Details 📝</h2>
+        <p class="text-xl mb-6">To make the integration process smoother, please submit your details through our secure form:</p>
+
+        <div class="space-y-6">
+          <div class="bg-blue-50 p-6 rounded-lg border-2 border-black">
+            <h3 class="text-2xl font-bold mb-4">Quick Submission Form</h3>
+            <p class="mb-4">Click the button below to access our secure integration form:</p>
+            
+            <a 
+              href="https://forms.gle/YOUR_FORM_ID_HERE" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-block bg-black text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800 transition-colors"
+            >
+              Submit Integration Details 📋
+            </a>
+
+            <div class="mt-6 bg-yellow-50 p-4 rounded-lg">
+              <p class="font-bold">The form will collect:</p>
+              <ul class="list-disc pl-6 mt-2">
+                <li>Your Shopify Admin API Access Token</li>
+                <li>Your Shopify store URL</li>
+                <li>Your selected tier (Basic/Advanced)</li>
+                <li>Confirmation of enabled permissions</li>
+                <li>Contact information</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 p-4 rounded-lg border-2 border-black mt-4">
+            <p class="text-sm">
+              💡 <strong>Note:</strong> If you prefer to share these details through another secure method, you can still use the options described in Step 6.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 </Layout>
