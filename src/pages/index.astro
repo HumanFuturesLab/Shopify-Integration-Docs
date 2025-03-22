@@ -336,5 +336,31 @@ import IntroSection from '../components/IntroSection.astro';
         </p>
       </div>
     </div>
+
+    <!-- Floating FAQs Button -->
+    <div class="fixed bottom-8 right-8">
+      <a 
+        href="/faq" 
+        class="flex items-center justify-center bg-black text-gleo-lime px-6 py-4 rounded-xl font-bold hover:bg-gray-800 hover:rotate-0 transition-all transform -rotate-2 shadow-brutal-lg border-4 border-gleo-lime"
+      >
+        <span class="text-3xl mr-2">❓</span>
+        <span class="text-xl">FAQs</span>
+      </a>
+    </div>
   </main>
 </Layout>
+
+<style>
+  .shadow-brutal {
+    box-shadow: 0.5rem 0.5rem 0 #000;
+  }
+  .shadow-brutal-lg {
+    box-shadow: 0.75rem 0.75rem 0 #000;
+  }
+  .text-gleo-lime {
+    color: #CBFF00;
+  }
+  .border-gleo-lime {
+    border-color: #CBFF00;
+  }
+</style>

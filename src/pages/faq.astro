@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Frequently Asked Questions - Gleo">
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="absolute top-8 left-8">
+      <img 
+        src="/images/gleo-logo.jpeg" 
+        alt="Gleo Logo" 
+        class="w-36 h-20 rounded-xl"
+      />
+    </div>
+
+    <a href="/" class="absolute top-8 right-8 bg-black text-white px-4 py-2 rounded-xl font-bold hover:bg-gray-800 transition-colors">
+      Back to Guide
+    </a>
+
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold mb-4 transform -rotate-2">Frequently Asked Questions</h1>
+      <p class="text-2xl transform rotate-1 mb-8">Common questions about the Gleo Shopify integration</p>
+      <p class="text-lg">Click on any question to see the answer</p>
+    </div>
+
+    <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+      <div class="space-y-4">
+        <div class="faq-item bg-blue-50">
+          <button class="faq-question">
+            <span>Is there a way to be on Gleo without doing the API integration?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>While manual discount code management is possible, the API integration provides a seamless, automated experience. Without it, you would need to manually create, distribute, and track discount codes, which becomes increasingly difficult to manage at scale. The integration ensures accurate tracking, real-time updates, and eliminates the possibility of errors in discount code management.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item bg-purple-50">
+          <button class="faq-question">
+            <span>We can create our own coupon codes and share with you. These can also be tracked to identify Gleo orders; why the integration?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>The integration offers several advantages over manual coupon management:</p>
+              <ul class="list-disc pl-6 mt-2 space-y-2">
+                <li>Automated creation of unique codes for each user</li>
+                <li>Real-time tracking of redemptions</li>
+                <li>Automatic disabling of codes after use</li>
+                <li>Simplified reporting and analytics</li>
+                <li>Reduced administrative burden on your team</li>
+                <li>Protection against discount code misuse</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item bg-green-50">
+          <button class="faq-question">
+            <span>Will it make our website slower?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>No, the Gleo integration will not impact your website's performance. The API integration operates entirely in the background and doesn't add any scripts or elements to your customer-facing website. All communication happens server-to-server between Gleo and Shopify's API, which means no additional loading time for your customers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item bg-yellow-50">
+          <button class="faq-question">
+            <span>Is any of our data being stored with you?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Gleo only stores the minimum data necessary to operate the rewards program:</p>
+              <ul class="list-disc pl-6 mt-2">
+                <li>Generated discount codes</li>
+                <li>Redemption data for Gleo-generated codes only</li>
+                <li>Order totals and discount amounts for transactions using Gleo codes</li>
+              </ul>
+              <p class="mt-2">We do not store customer personal information, full order histories, or any data from transactions that don't use Gleo codes. All data is stored securely and in compliance with privacy regulations.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item bg-blue-50">
+          <button class="faq-question">
+            <span>Once it's done, does our IT team need to maintain the integration?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>No, the integration is designed to be maintenance-free. Once set up, it works autonomously without requiring ongoing technical support from your team. Gleo monitors the connection and will proactively reach out if any issues arise or if updates are needed. Your team can focus on your core business while we handle the technical aspects of the rewards program.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item bg-purple-50">
+          <button class="faq-question">
+            <span>Can we control what data is being shared with Gleo?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes, you have control over the data shared:</p>
+              <ul class="list-disc pl-6 mt-2">
+                <li>With Shopify Advanced, you can implement the Shopify Flow setup (Step 6, Advanced Tier) to filter exactly what order data is sent</li>
+                <li>The API permissions are specifically limited to discount code management and associated orders</li>
+                <li>You can revoke access at any time through your Shopify admin panel</li>
+              </ul>
+              <p class="mt-2">We're also happy to discuss any specific data concerns and adjust our integration to meet your requirements.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item bg-green-50">
+          <button class="faq-question">
+            <span>Is this API integration compatible with all checkout methods?</span>
+            <span class="faq-icon">▼</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Yes, the integration works with all standard Shopify checkout methods, including:</p>
+              <ul class="list-disc pl-6 mt-2 space-y-1">
+                <li>Standard Shopify checkout</li>
+                <li>Shop Pay</li>
+                <li>Shopify Checkout Extensions</li>
+                <li>Custom checkout solutions built on Shopify APIs</li>
+              </ul>
+              <p class="mt-2">If you're using a highly customized checkout solution, please let us know during setup so we can ensure compatibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bg-black text-gleo-lime p-8 rounded-lg border-4 border-gleo-lime shadow-brutal-lg transform -rotate-1 mt-12">
+      <h3 class="text-2xl font-bold mb-4">Still Have Questions? 🤝</h3>
+      <p class="text-xl">
+        Our technical team is here to help! Contact us at <a href="mailto:tech@gleo.club" class="underline">tech@gleo.club</a> if you have any other questions about the integration.
+      </p>
+    </div>
+  </main>
+</Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    // Initialize answers to have proper height values
+    faqItems.forEach(item => {
+      const answer = item.querySelector('.faq-answer');
+      const answerInner = item.querySelector('.faq-answer-inner');
+      
+      // Store the original height for future reference
+      answer.dataset.height = answerInner.offsetHeight + 'px';
+      answer.style.height = '0px';
+    });
+    
+    // Add click event to each question
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = question.querySelector('.faq-icon');
+      
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        
+        // Close all other items first
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('is-open')) {
+            // Close this item
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            
+            otherItem.classList.remove('is-open');
+            otherAnswer.style.height = '0px';
+            otherAnswer.classList.remove('is-visible');
+            otherIcon.style.transform = 'rotate(0deg)';
+          }
+        });
+        
+        // Toggle current item
+        if (isOpen) {
+          // Close this item
+          item.classList.remove('is-open');
+          answer.style.height = '0px';
+          setTimeout(() => {
+            answer.classList.remove('is-visible');
+          }, 300);
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          // Open this item
+          item.classList.add('is-open');
+          answer.classList.add('is-visible');
+          answer.style.height = answer.dataset.height;
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  });
+</script>
+
+<style is:inline>
+  .faq-item {
+    border-radius: 0.5rem;
+    border-width: 2px;
+    overflow: hidden;
+    border-style: solid;
+    border-color: black;
+  }
+  
+  .faq-question {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  
+  .faq-question:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .faq-answer {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  
+  .faq-answer-inner {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .faq-answer.is-visible .faq-answer-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .is-open .faq-question {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .shadow-brutal {
+    box-shadow: 0.5rem 0.5rem 0 #000;
+  }
+  
+  .shadow-brutal-lg {
+    box-shadow: 0.75rem 0.75rem 0 #000;
+  }
+  
+  .text-gleo-lime {
+    color: #CBFF00;
+  }
+  
+  .border-gleo-lime {
+    border-color: #CBFF00;
+  }
+</style> 
