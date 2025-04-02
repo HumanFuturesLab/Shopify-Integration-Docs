@@ -91,6 +91,7 @@ import IntroSection from '../components/IntroSection.astro';
           </li>
           <li>Click <strong>Save</strong> to apply changes</li>
         </ul>
+
         <Screenshot 
           src="/images/step4-api-permissions.png" 
           alt="API Permissions Configuration"
@@ -161,6 +162,22 @@ import IntroSection from '../components/IntroSection.astro';
               </ul>
             </li>
           </ul>
+
+          <h4 class="text-xl font-bold mb-4">Additional Step for Basic Tier: Configure Order Webhooks</h4>
+          <div class="bg-white p-6 rounded border-2 border-black mb-6">
+            <p class="mb-4">To enable automatic tracking of discount code usage, you'll need to set up a webhook:</p>
+            <ol class="list-decimal pl-6 space-y-3">
+              <li>In your Shopify admin, go to <strong>Settings</strong> > <strong>Notifications</strong> > <strong>Webhooks</strong></li>
+              <li>Click <strong>Create webhook</strong></li>
+              <li>For the <strong>Event</strong>, select "Order creation"</li>
+              <li>For the <strong>Format</strong>, select "JSON"</li>
+              <li>For the <strong>URL</strong>, enter: <code class="bg-black text-white px-2 py-1 rounded">https://devapi.gleo.club/api/reward/webhook/order/paid</code></li>
+              <li>Click <strong>Save webhook</strong></li>
+            </ol>
+            <div class="mt-4 bg-blue-50 p-4 rounded">
+              <p class="text-sm">💡 <strong>Note:</strong> This ensures our system is notified when customers complete purchases using Gleo discount codes.</p>
+            </div>
+          </div>
         </div>
 
         <!-- Advanced Tier Content -->
