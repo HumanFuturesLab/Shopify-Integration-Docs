@@ -43,7 +43,7 @@ import Layout from '../layouts/Layout.astro';
           </button>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              <p>That’s not possible with Gleo. For security and accuracy, Gleo generates a unique coupon code for each user at the time of redemption. This ensures:</p>
+              <p>That's not possible with Gleo. For security and accuracy, Gleo generates a unique coupon code for each user at the time of redemption. This ensures:</p>
               <ul class="list-disc pl-6 mt-2 space-y-2">
                 <li>Automated creation of unique codes for each user</li>
                 <li>Real-time tracking of redemptions</li>
@@ -108,11 +108,14 @@ import Layout from '../layouts/Layout.astro';
             <div class="faq-answer-inner">
               <p>Yes, you have control over the data shared:</p>
               <ul class="list-disc pl-6 mt-2">
-                <li>With Shopify Advanced, you can implement the Shopify Flow setup (Step 6, Advanced Tier) to filter exactly what order data is sent</li>
-                <li>The API permissions are specifically limited to discount code management and associated orders</li>
-                <li>You can revoke access at any time through your Shopify admin panel</li>
+                <li>Gleo uses the <code class="bg-black text-white px-2 py-1 rounded">read_orders</code> permission exclusively to look up orders that have a Gleo-issued discount code. No other order data is accessed or stored.</li>
+                <li>Gleo's system only queries Shopify for orders that contain a Gleo discount code. Orders without a Gleo code are never accessed, processed, or stored by Gleo.</li>
+                <li>When validating redemptions, Gleo sends a GraphQL query to Shopify that filters for orders where the discount code matches a Gleo-issued code (e.g., codes starting with "GLEO"). This ensures only relevant orders are returned and processed.</li>
+                <li>No customer personal data or unrelated order information is accessed or stored by Gleo. Only the minimum order details required to validate the use of a Gleo discount code are processed.</li>
+                <li>You can review your Shopify store's API access logs to confirm that Gleo only queries for orders containing Gleo discount codes.</li>
+                <li>There is no need to set up webhooks or Shopify Flow for Gleo's integration. All discount code validation and tracking is handled through secure, filtered API queries.</li>
+                <li>If you remove Gleo's app or revoke the API token, Gleo will immediately lose access to your store's data and will no longer be able to manage or validate discount codes.</li>
               </ul>
-              <p class="mt-2">We're also happy to discuss any specific data concerns and adjust our integration to meet your requirements.</p>
             </div>
           </div>
         </div>

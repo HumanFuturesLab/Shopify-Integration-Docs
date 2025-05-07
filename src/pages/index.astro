@@ -72,11 +72,10 @@ import IntroSection from '../components/IntroSection.astro';
             <li>Create and manage discount codes automatically</li>
             <li>Set specific discount rules based on your preferences</li>
             <li>Track and validate discount usage</li>
-            <li>Receive notifications when discount codes are redeemed</li>
           </ul>
         </div>
         <div class="bg-yellow-50 p-4 rounded-lg border-2 border-black mb-6">
-          <p class="font-bold">🔒 Security Note: These permissions are strictly limited to discount management and associated order data. Gleo only receives information about transactions where our discount codes are used.</p>
+          <p class="font-bold">🔒 Security Note: These permissions are strictly limited to discount management and order data. Gleo only receives information about transactions where our discount codes are used.</p>
         </div>
         <ul class="list-disc pl-6 space-y-3 text-lg">
           <li>Go to the <strong>Configuration</strong> tab</li>
@@ -87,11 +86,11 @@ import IntroSection from '../components/IntroSection.astro';
               <li><code class="bg-black text-white px-2 py-1 rounded">read_price_rules</code> - Read price rules</li>
               <li><code class="bg-black text-white px-2 py-1 rounded">read_discounts</code> - Read discount information</li>
               <li><code class="bg-black text-white px-2 py-1 rounded">write_discounts</code> - Create/manage discounts</li>
+              <li><code class="bg-black text-white px-2 py-1 rounded">read_orders</code> - Access order information</li>
             </ul>
           </li>
           <li>Click <strong>Save</strong> to apply changes</li>
         </ul>
-
         <Screenshot 
           src="/images/step4-api-permissions.png" 
           alt="API Permissions Configuration"
@@ -99,224 +98,60 @@ import IntroSection from '../components/IntroSection.astro';
         />
       </section>
 
-      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:-rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">5. Generate API Credentials</h2>
-        <ul class="list-disc pl-6 space-y-3 text-lg">
-          <li>Navigate to the <strong>API Credentials</strong> tab</li>
-          <li>Click <strong>Install app</strong> to generate the Admin API access token</li>
-          <li class="text-red-600 font-bold">Important: Save the token immediately - it will only be shown once!</li>
-        </ul>
-        <Screenshot 
-          src="/images/step5-api-credentials.png" 
-          alt="API Credentials Generation"
-          caption="API credentials page with Install app button" 
-        />
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">5. Privacy by Design</h2>
+        <div class="bg-green-50 p-6 rounded-lg border-2 border-black mb-6">
+          <p class="text-lg">Gleo uses Shopify's GraphQL API to retrieve only the minimum order data required for reward validation. <strong>We only query for orders that contain Gleo-issued discount codes</strong>. This means your customers' order data remains private and is never shared with Gleo unless our code is used. This approach is more privacy-respecting and secure than webhooks or broad order access.</p>
+        </div>
       </section>
 
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">6. Configure Order Tracking</h2>
-        
-        <div class="mb-8">
-          <p class="text-xl mb-4">The next steps depend on your Shopify subscription tier. Select your tier to see the appropriate integration steps:</p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <button 
-              id="basicTier"
-              class="p-6 border-4 border-black rounded-lg bg-yellow-50 hover:bg-yellow-100 transition-colors text-left"
-            >
-              <h3 class="text-2xl font-bold mb-2">Shopify Basic</h3>
-              <p>Standard integration with full order history access</p>
-            </button>
-            
-            <button 
-              id="advancedTier"
-              class="p-6 border-4 border-black rounded-lg bg-green-50 hover:bg-green-100 transition-colors text-left"
-            >
-              <h3 class="text-2xl font-bold mb-2">Shopify Advanced</h3>
-              <p>Reduces data exposure by filtering at the source</p>
-            </button>
-          </div>
+        <h2 class="text-3xl font-bold mb-6">6. Example: Gleo's GraphQL Query</h2>
+        <p class="text-lg mb-4">Below is the actual GraphQL query Gleo uses to fetch only orders that include our discount codes (e.g., codes starting with <code class="bg-black text-white px-2 py-1 rounded">GLEO</code>):</p>
+        <pre class="bg-gray-100 p-4 rounded overflow-x-auto text-sm mb-4"><code>{`{
+  orders(first: 50, query: "discount_code:GLEO*") {
+    edges {
+      node {
+        id
+        name
+        createdAt
+        discountCodes {
+          code
+        }
+        subtotalPriceSet {
+          shopMoney {
+            amount
+            currencyCode
+          }
+        }
+        totalPriceSet {
+          shopMoney {
+            amount
+            currencyCode
+          }
+        }
+        totalDiscountsSet {
+          shopMoney {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+  }
+}`}</code></pre>
+        <div class="bg-blue-50 p-4 rounded border-2 border-black">
+          <p class="text-sm">💡 <strong>Note:</strong> This query ensures only relevant order data is accessed, protecting your store's privacy.</p>
         </div>
-
-        <!-- Basic Tier Content -->
-        <div id="basicTierContent" class="hidden tier-content">
-          <div class="bg-yellow-50 p-6 rounded-lg border-2 border-black mb-6">
-            <h3 class="text-2xl font-bold mb-4">Basic Tier Integration</h3>
-            <p class="mb-4">With Shopify Basic, we'll need to:</p>
-            <ul class="list-disc pl-6 space-y-2">
-              <li>Enable read access to all orders to track discount code usage</li>
-              <li>Add additional API permissions for order tracking</li>
-            </ul>
-            <div class="mt-4 bg-yellow-100 p-4 rounded">
-              ⚠️ Note: This ensures we can track discount performance accurately, but we only use data tied to Gleo codes.
-            </div>
-          </div>
-
-          <h4 class="text-xl font-bold mb-4">Additional API Permissions Required:</h4>
-          <ul class="list-disc pl-6 space-y-3 text-lg mb-6">
-            <li>Return to the API permissions section</li>
-            <li>Enable these additional scopes:
-              <ul class="list-circle pl-6 mt-3 space-y-2">
-                <li><code class="bg-black text-white px-2 py-1 rounded">read_orders</code> - Access order information</li>
-                <li><code class="bg-black text-white px-2 py-1 rounded">read_all_orders</code> - Read all order data</li>
-              </ul>
-            </li>
-          </ul>
-
-          <h4 class="text-xl font-bold mb-4">Additional Step for Basic Tier: Configure Order Webhooks</h4>
-          <div class="bg-white p-6 rounded border-2 border-black mb-6">
-            <p class="mb-4">To enable automatic tracking of discount code usage, you'll need to set up a webhook:</p>
-            <ol class="list-decimal pl-6 space-y-3">
-              <li>In your Shopify admin, go to <strong>Settings</strong> > <strong>Notifications</strong> > <strong>Webhooks</strong></li>
-              <li>Click <strong>Create webhook</strong></li>
-              <li>For the <strong>Event</strong>, select "Order creation"</li>
-              <li>For the <strong>Format</strong>, select "JSON"</li>
-              <li>For the <strong>URL</strong>, enter: <code class="bg-black text-white px-2 py-1 rounded">https://devapi.gleo.club/api/reward/webhook/order/paid</code></li>
-              <li>Click <strong>Save webhook</strong></li>
-            </ol>
-            <div class="mt-4 bg-blue-50 p-4 rounded">
-              <p class="text-sm">💡 <strong>Note:</strong> This ensures our system is notified when customers complete purchases using Gleo discount codes.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Advanced Tier Content -->
-        <div id="advancedTierContent" class="hidden tier-content">
-          <div class="bg-green-50 p-6 rounded-lg border-2 border-black mb-6">
-            <h3 class="text-2xl font-bold mb-4">Advanced Tier Integration with Shopify Flow</h3>
-            <p class="mb-4">Using Shopify Flow, we can set up targeted notifications that only send data when Gleo-generated discount codes are used. <br>
-              <br>This sends us basic order details (like total cost and discount used) when a Gleo code is redeemed.</p>
-          </div>
-
-          <div class="space-y-6">
-            <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">Step A: Access Shopify Flow</h4>
-              <ul class="list-disc pl-6 space-y-2">
-                <li>From your Shopify admin dashboard, navigate to <strong>Apps > Flow</strong></li>
-                <li>Click <strong>Create Workflow</strong></li>
-              </ul>
-            </div>
-
-            <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">Step B: Configure Trigger</h4>
-              <ul class="list-disc pl-6 space-y-2">
-                <li>Click <strong>Select a trigger</strong></li>
-                <li>Choose <strong>Shopify</strong></li>
-                <li>Select <strong>Order Created</strong> as the trigger</li>
-              </ul>
-            </div>
-
-            <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">Step C: Set Up Conditions</h4>
-              <ul class="list-disc pl-6 space-y-4">
-                <li class="space-y-2">
-                  <p><strong>First Condition (Payment Status):</strong></p>
-                  <ol class="list-decimal pl-6">
-                    <li>Click the <strong>+</strong> button</li>
-                    <li>Select <strong>Condition</strong></li>
-                    <li>Click <strong>Add variable</strong> in the search field</li>
-                    <li>Search and select <code class="bg-black text-white px-2 py-1 rounded">fullyPaid</code></li>
-                    <li>Set the condition to <strong>is equal to True</strong></li>
-                  </ol>
-                </li>
-
-                <li class="space-y-2">
-                  <p><strong>Second Condition (Discount Code Exists):</strong></p>
-                  <ol class="list-decimal pl-6">
-                    <li>Click <strong>Then</strong> and select <strong>Condition</strong></li>
-                    <li>Click <strong>Add variable</strong> and select <code class="bg-black text-white px-2 py-1 rounded">discountCode</code></li>
-                    <li>Choose <strong>Not Empty and exists</strong></li>
-                    <li>Click <strong>Add criteria</strong> and select <strong>AND</strong></li>
-                  </ol>
-                </li>
-
-                <li class="space-y-2">
-                  <p><strong>Third Condition (Gleo Code Prefix):</strong></p>
-                  <ol class="list-decimal pl-6">
-                    <li>Select <code class="bg-black text-white px-2 py-1 rounded">discountCode</code> again</li>
-                    <li>Choose <strong>Starts with</strong></li>
-                    <li>Enter <strong>GLEO</strong> in the value input field</li>
-                  </ol>
-                </li>
-              </ul>
-              <div class="mt-4 bg-blue-50 p-4 rounded border border-black">
-                <p class="text-sm">💡 <strong>Note:</strong> These conditions ensure the workflow only triggers for completed orders that use Gleo-generated discount codes.</p>
-              </div>
-            </div>
-
-            <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">Step D: Configure HTTP Action</h4>
-              <ul class="list-disc pl-6 space-y-2">
-                <li>Add an action and select <strong>Flow > Send HTTP Request</strong></li>
-                <li>Set HTTP Method to <strong>POST</strong></li>
-                <li>Enter the Gleo endpoint URL (https://devapi.gleo.club/api/reward/webhook/v2/order/paid)</li>
-                <li>Add header:
-                  <code class="block bg-gray-100 p-2 mt-2 rounded">
-                    Content-Type: application/json
-                  </code>
-                </li>
-                <li>Add the following JSON body:
-                  <pre class="bg-gray-100 p-3 mt-2 rounded overflow-x-auto"><code>{"{"} 
-  "created_at": "{"{"} order.createdAt {"}"}",
-  "discountcode": "{"{"} order.discountCode {"}"}",
-  "discountedamount": "{"{"} order.totalDiscountsSet.shopMoney.amount {"}"}",
-  "subtotal": "{"{"} order.subtotalPriceSet.shopMoney.amount {"}"}",
-  "total": "{"{"} order.totalPriceSet.shopMoney.amount {"}"}"
-{"}"}</code></pre>
-                </li>
-              </ul>
-            </div>
-
-            <div class="bg-white p-6 rounded border-2 border-black">
-              <h4 class="text-xl font-bold mb-3">Step E: Activate the Workflow</h4>
-              <ul class="list-disc pl-6 space-y-2">
-                <li>Review all settings for accuracy</li>
-                <li>Click <strong>Turn On Workflow</strong> to activate</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <script is:inline>
-          document.addEventListener('DOMContentLoaded', () => {
-            const showTierContent = (tier) => {
-              // Hide all tier content
-              document.querySelectorAll('.tier-content').forEach((el) => {
-                el.classList.add('hidden');
-              });
-              
-              // Show selected tier content
-              const selectedContent = document.getElementById(tier + 'TierContent');
-              if (selectedContent) {
-                selectedContent.classList.remove('hidden');
-              }
-              
-              // Update button styles
-              document.querySelectorAll('#basicTier, #advancedTier').forEach((button) => {
-                button.classList.remove('ring-4', 'ring-black');
-              });
-              const selectedButton = document.getElementById(tier + 'Tier');
-              if (selectedButton) {
-                selectedButton.classList.add('ring-4', 'ring-black');
-              }
-            };
-
-            // Add click event listeners to buttons
-            document.getElementById('basicTier')?.addEventListener('click', () => showTierContent('basic'));
-            document.getElementById('advancedTier')?.addEventListener('click', () => showTierContent('advanced'));
-          });
-        </script>
       </section>
 
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
         <h2 class="text-3xl font-bold mb-6">7. Submit Integration Details 📝</h2>
         <p class="text-xl mb-6">To make the integration process smoother, please submit your details through our secure form:</p>
-
         <div class="space-y-6">
           <div class="bg-blue-50 p-6 rounded-lg border-2 border-black">
             <h3 class="text-2xl font-bold mb-4">Quick Submission Form</h3>
             <p class="mb-4">Click the button below to access our secure integration form:</p>
-            
             <a 
               href="https://forms.gle/oig9rZuYFdbXqiY39" 
               target="_blank" 
@@ -325,19 +160,16 @@ import IntroSection from '../components/IntroSection.astro';
             >
               Submit Integration Details 📋
             </a>
-
             <div class="mt-6 bg-yellow-50 p-4 rounded-lg">
               <p class="font-bold">The form will collect:</p>
               <ul class="list-disc pl-6 mt-2">
                 <li>Your Shopify Admin API Access Token</li>
                 <li>Your Shopify store URL</li>
-                <li>Your selected tier (Basic/Advanced)</li>
                 <li>Confirmation of enabled permissions</li>
                 <li>Contact information</li>
               </ul>
             </div>
           </div>
-
           <div class="bg-gray-50 p-4 rounded-lg border-2 border-black mt-4">
             <p class="text-sm">
               💡 <strong>Note:</strong> If you prefer not to use the form, please contact us directly at tech@gleo.club to arrange an alternative method for sharing your integration details.
