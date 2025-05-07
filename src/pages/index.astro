@@ -99,14 +99,28 @@ import IntroSection from '../components/IntroSection.astro';
       </section>
 
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">5. Privacy by Design</h2>
+        <h2 class="text-3xl font-bold mb-6">5. Generate API Credentials</h2>
+        <ul class="list-disc pl-6 space-y-3 text-lg">
+          <li>Navigate to the <strong>API Credentials</strong> tab in your app</li>
+          <li>Click <strong>Install app</strong> to generate the Admin API access token</li>
+          <li class="text-red-600 font-bold">Important: Save the token immediately – it will only be shown once!</li>
+        </ul>
+        <Screenshot 
+          src="/images/step5-api-credentials.png" 
+          alt="API Credentials Generation"
+          caption="API credentials page with Install app button" 
+        />
+      </section>
+
+      <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
+        <h2 class="text-3xl font-bold mb-6">6. Privacy by Design</h2>
         <div class="bg-green-50 p-6 rounded-lg border-2 border-black mb-6">
           <p class="text-lg">Gleo uses Shopify's GraphQL API to retrieve only the minimum order data required for reward validation. <strong>We only query for orders that contain Gleo-issued discount codes</strong>. This means your customers' order data remains private and is never shared with Gleo unless our code is used. This approach is more privacy-respecting and secure than webhooks or broad order access.</p>
         </div>
       </section>
 
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">6. Example: Gleo's GraphQL Query</h2>
+        <h2 class="text-3xl font-bold mb-6">7. Example: Gleo's GraphQL Query</h2>
         <p class="text-lg mb-4">Below is the actual GraphQL query Gleo uses to fetch only orders that include our discount codes (e.g., codes starting with <code class="bg-black text-white px-2 py-1 rounded">GLEO</code>):</p>
         <pre class="bg-gray-100 p-4 rounded overflow-x-auto text-sm mb-4"><code>{`{
   orders(first: 50, query: "discount_code:GLEO*") {
@@ -146,7 +160,7 @@ import IntroSection from '../components/IntroSection.astro';
       </section>
 
       <section class="bg-white p-8 rounded-lg border-4 border-black shadow-brutal transform hover:rotate-1 transition-transform">
-        <h2 class="text-3xl font-bold mb-6">7. Submit Integration Details 📝</h2>
+        <h2 class="text-3xl font-bold mb-6">8. Submit Integration Details 📝</h2>
         <p class="text-xl mb-6">To make the integration process smoother, please submit your details through our secure form:</p>
         <div class="space-y-6">
           <div class="bg-blue-50 p-6 rounded-lg border-2 border-black">
